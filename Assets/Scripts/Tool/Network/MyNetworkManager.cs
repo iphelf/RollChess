@@ -33,6 +33,33 @@ public class MyNetworkManager : NetworkManager {
     }
 
     /// <summary>
+    ///   <para> Server下线后回调 </para>
+    /// </summary>
+    public override void OnServerDisconnect(NetworkConnection conn) {
+        Debug.Log("Server Disconnected");
+        NetworkResource.networkInfo.players.Clear();
+        // 房主回到开房界面
+        // BUG: 一旦断连conn里面的东西就没了，得用其他数据判断本地是否为服务器；或者干脆让房主也退回到联机界面
+        // if(conn.identity.isLocalPlayer)
+        //     PanelManager.Get().NowPanel = PanelManager.Get().roomOwnerChooseMap;
+        base.OnServerDisconnect(conn);
+    }
+
+    /// <summary>
+    ///   <para> Client下线后回调 </para>
+    /// </summary>
+    public override void OnClientDisconnect(NetworkConnection conn) {
+        Debug.Log("Client Disconnected");
+        NetworkIdentity identity=conn.identity;
+        uint playerId = 0; // 根据NetworkIdentity获取player的唯一id
+        NetworkResource.networkInfo.players.Remove(playerId);
+        // 断连的房客回到联机界面
+        if (identity.isLocalPlayer && !identity.isServer)
+            PanelManager.Get().NowPanel = PanelManager.Get().joinRoom;
+        base.OnClientDisconnect(conn);
+    }
+
+    /// <summary>
     ///   <para> 连接成功后，在Client上回调 </para>
     /// </summary>
     public override void OnClientConnect(NetworkConnection conn)

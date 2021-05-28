@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,10 +30,16 @@ public class PanelManager : MonoBehaviour {
     // 返回按钮
     [SerializeField] Button backButton;
 
+    /// <summary>
+    ///    <para> 页面变化的推送 </para>
+    /// </summary>
+    static public Subject panelChangeSubject;
+
     // 初始化，页面最开始是主菜单
     void Start() {
         NowPanel = mainMenu;
         menuManager = this;
+        panelChangeSubject = new Subject();
     }
 
     /// <summary>
@@ -49,9 +56,17 @@ public class PanelManager : MonoBehaviour {
         // 单人页 / 地图编辑页 / 联机页 -> 主页
         if(nowPanel == single || nowPanel == mapEdit || nowPanel == joinRoom)
             NowPanel = mainMenu;
-        // 联机房主页 / 联机房间页 -> 联机页
-        if (nowPanel == roomOwnerChooseMap || nowPanel == room)
+        // 联机房主页 -> 联机页
+        if (nowPanel == roomOwnerChooseMap)
             NowPanel = joinRoom;
+        // 联机房间页 -> 联机页
+        if (nowPanel == room) {
+            NowPanel = joinRoom;
+            if (NetworkResource.networkInfo.identity.isServer)
+                NetworkResource.networkSubject.Notify(ModelModifyEvent.Server_Off);
+            else
+                NetworkResource.networkSubject.Notify(ModelModifyEvent.Client_Off);
+        }
     }
 
     /// <summary>
@@ -60,6 +75,8 @@ public class PanelManager : MonoBehaviour {
     public Image NowPanel {
         get {return nowPanel;}
         set {
+            if (nowPanel == value)
+                return;
             if(!(nowPanel is null))
                 nowPanel.gameObject.SetActive(false);
             nowPanel = value;

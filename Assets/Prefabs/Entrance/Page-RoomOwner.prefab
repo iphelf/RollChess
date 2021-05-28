@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8869723790501268427}
   - component: {fileID: 8869723790501268428}
   m_Layer: 5
-  m_Name: RoomOwnerChooseMap
+  m_Name: Page-RoomOwner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,6 +306,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8869723790501268429}
     m_Modifications:
+    - target: {fileID: 555954018576309886, guid: 4f31b1a72b5886241bc32ca3a46655fa,
+        type: 3}
+      propertyPath: isMultiplePlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3906171121022929282, guid: 4f31b1a72b5886241bc32ca3a46655fa,
+        type: 3}
+      propertyPath: isMultiplePlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4760846909174069008, guid: 4f31b1a72b5886241bc32ca3a46655fa,
         type: 3}
       propertyPath: m_Name
@@ -420,6 +430,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681247587292068816, guid: 4f31b1a72b5886241bc32ca3a46655fa,
+        type: 3}
+      propertyPath: isMultiplePlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633429978146685362, guid: 4f31b1a72b5886241bc32ca3a46655fa,
+        type: 3}
+      propertyPath: isMultiplePlayer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f31b1a72b5886241bc32ca3a46655fa, type: 3}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -70,7 +71,7 @@ public class EntranceController : MonoBehaviour {
     }
     
     /// <summary>
-    ///   <para> 创建房间 </para>
+    ///   <para> 取消加入房间 </para>
     /// </summary>
     public void CancelJoinRoom() {
         NetworkResource.networkManager.StopClient();
