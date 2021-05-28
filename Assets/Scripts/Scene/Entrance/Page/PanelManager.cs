@@ -46,9 +46,12 @@ public class PanelManager : MonoBehaviour {
     ///   <para> 点击返回按钮 </para>
     /// </summary>
     public void Back() {
-        // 单人页 / 地图编辑页 -> 主页
-        if(nowPanel == single || nowPanel == mapEdit)
+        // 单人页 / 地图编辑页 / 联机页 -> 主页
+        if(nowPanel == single || nowPanel == mapEdit || nowPanel == joinRoom)
             NowPanel = mainMenu;
+        // 联机房主页 / 联机房间页 -> 联机页
+        if (nowPanel == roomOwnerChooseMap || nowPanel == room)
+            NowPanel = joinRoom;
     }
 
     /// <summary>
