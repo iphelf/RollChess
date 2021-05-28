@@ -18,7 +18,7 @@ public class MapOperationController : MonoBehaviour
             return false;
         }
 
-        return false;
+        return true;
     }
     
     /// <summary>

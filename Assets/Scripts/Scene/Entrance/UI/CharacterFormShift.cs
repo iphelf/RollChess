@@ -15,7 +15,7 @@ public class CharacterFormShift : MonoBehaviour
     private bool _isLocked;
     
     // 是否是多人模式
-    public bool isMultiplePlayer = true;
+    public bool isMultiplePlayer = false;
 
     // 切换按钮
     [SerializeField] Button button;
