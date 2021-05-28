@@ -45,8 +45,13 @@ public class ChooseCharacter : MonoBehaviour
 
         // 更新按钮锁定
         for(int i=0; i<buttons.Count; i++) {
+            // BUG: 应该根据地图中的token颜色判断哪些被ban，哪些保留
             // Max之前的解锁，之后的锁定
             buttons[i].IsLocked = (i >= max);
+            EntranceResource.mapChooseState.SetPlayerForm(
+                (PlayerID) i,
+                (i>=max) ? PlayerForm.Banned : PlayerForm.Player
+            );
         }
     }
     
